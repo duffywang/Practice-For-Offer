@@ -1,10 +1,6 @@
 package chapter6;
-/*重建二叉树
- * 输入二叉树的前序遍历和中序遍历的结果，重建出该二叉树。假设前
-序遍历和中序遍历结果中都不包含重复的数字，例如输入的前序遍历序列
-{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}重建出如图所示的二叉
-树。
-思路：先找到树的根节点，分成左子树和右子树，在左子树和右子树中继续找根节点，递归下去*/
+
+
 import java.util.Arrays;
 
 import chapter18.BinaryTreeNode;
@@ -24,10 +20,8 @@ public class Problem6 {
 			{
 				root.data=inorder[i];
 				System.out.print(root.data+"  ");
-				//递归Arrays.copyOfRange( , );
-				//Copies the specified range of the specified array into a new array.
-				//to - the final index of the range to be copied, exclusive. (This index may lie outside the array.)
-				//不包含to的值，to的值不被复制
+
+
 				root.left=constructCore(Arrays.copyOfRange(preorder,1,i+1),Arrays.copyOfRange(inorder,0,i));
 				root.right=constructCore(Arrays.copyOfRange(preorder,i+1,preorder.length),Arrays.copyOfRange(inorder,i+1,inorder.length));
 			}
