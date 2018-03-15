@@ -1,13 +1,15 @@
 package chapter44;
-/*ÆË¿ËÅÆµÄË³×Ó
- *ÌâÄ¿£º´ÓÆË¿ËÅÆÖĞËæ»ú³é 5 ÕÅÅÆ£¬ÅĞ¶ÏÊÇ²»ÊÇË³×Ó£¬¼´Õâ 5 ÕÅÅÆÊÇ²»ÊÇÁ¬ĞøµÄ¡£
-2-10 ÎªÊı×Ö±¾Éí£¬ A Îª 1£¬ J Îª 11£¬ Q Îª 12£¬ K Îª 13£¬¶ø´óĞ¡Íõ¿ÉÒÔ¿´³ÉÈÎÒâµÄ
-Êı×Ö¡£
-Ë¼Â·£º1.ÏÈÅÅĞò Arrays.sort()£¬Í³¼Æ0(´óĞ¡Íõ)µÄ¸öÊı;
-2.´Ó¼ä¸ôÊıºÍ´óĞ¡ÍõÏÂÊÖ £¬Èç¹û¼ä¸ôÊı´óÓÚ´óĞ¡ÍõµÄ¸öÊı£¬Ôò²»Á¬Ğø£»¼ä¸ôÊıĞ¡ÓÚµÈÓÚ´óĞ¡ÍõÊı£¬ÔòÁ¬Ğø
-*/
+
+
 import java.util.Arrays;
 
+/**
+ * @author duffywang
+ *LLä»Šå¤©å¿ƒæƒ…ç‰¹åˆ«å¥½,å› ä¸ºä»–å»ä¹°äº†ä¸€å‰¯æ‰‘å…‹ç‰Œ,å‘ç°é‡Œé¢å±…ç„¶æœ‰2ä¸ªå¤§ç‹,2ä¸ªå°ç‹(ä¸€å‰¯ç‰ŒåŸæœ¬æ˜¯54å¼ ^_^)...ä»–éšæœºä»ä¸­æŠ½å‡ºäº†5å¼ ç‰Œ,æƒ³æµ‹æµ‹è‡ªå·±çš„æ‰‹æ°”,
+ *çœ‹çœ‹èƒ½ä¸èƒ½æŠ½åˆ°é¡ºå­,å¦‚æœæŠ½åˆ°çš„è¯,ä»–å†³å®šå»ä¹°ä½“è‚²å½©ç¥¨,å˜¿å˜¿ï¼ï¼â€œçº¢å¿ƒA,é»‘æ¡ƒ3,å°ç‹,å¤§ç‹,æ–¹ç‰‡5â€,â€œOh My God!â€ä¸æ˜¯é¡ºå­.....LLä¸é«˜å…´äº†,
+ *ä»–æƒ³äº†æƒ³,å†³å®šå¤§\å° ç‹å¯ä»¥çœ‹æˆä»»ä½•æ•°å­—,å¹¶ä¸”Açœ‹ä½œ1,Jä¸º11,Qä¸º12,Kä¸º13ã€‚ä¸Šé¢çš„5å¼ ç‰Œå°±å¯ä»¥å˜æˆâ€œ1,2,3,4,5â€(å¤§å°ç‹åˆ†åˆ«çœ‹ä½œ2å’Œ4),â€œSo Lucky!â€ã€‚
+ *LLå†³å®šå»ä¹°ä½“è‚²å½©ç¥¨å•¦ã€‚ ç°åœ¨,è¦æ±‚ä½ ä½¿ç”¨è¿™å¹…ç‰Œæ¨¡æ‹Ÿä¸Šé¢çš„è¿‡ç¨‹,ç„¶åå‘Šè¯‰æˆ‘ä»¬LLçš„è¿æ°”å¦‚ä½•ã€‚ä¸ºäº†æ–¹ä¾¿èµ·è§,ä½ å¯ä»¥è®¤ä¸ºå¤§å°ç‹æ˜¯0
+ */
 public class Problem44 {
 	public boolean isContionous(int [] number,int length)
 	{
@@ -21,13 +23,13 @@ public class Problem44 {
 			zero_counts++;
 			i++;
 		}
-		//±Ü¹ıÇ°ÃæµÄ0
+
 		int prev=number[i++];
 		for(;i<length;i++)
 		{
 			if(number[i]==prev)
 				return false;
-			//ºóÒ»¸öÊı¼õÇ°Ò»¸öÊıÔÙ¼õ1
+			//å…³é”®ï¼šæ±‚ç›¸é‚»ç‚¹çš„gapå€¼ï¼Œæ­£å¸¸ä¸º0
 			gap_counts+=(number[i]-prev-1);
 			prev=number[i];
 		}
@@ -36,13 +38,40 @@ public class Problem44 {
 		else
 			return false;
 	}
+	
+	
+    public boolean isContinuous(int [] numbers) {
+        if(numbers == null||numbers.length != 5)return false;
+        Arrays.sort(numbers);
+        int zero = 0;
+        int gap = 0;
+        for(int n:numbers){
+            if(n == 0) zero++;
+        }
+        //æ³¨æ„ä»zeroç‚¹å¼€å§‹ï¼Œeg:0 0 2 4 6;ä¼šè®¡ç®—å¼€å§‹æ—¶gap = 2-0;
+        int i = zero;
+        int pre = numbers[i++];
+        for(;i<numbers.length;i++){
+            if(numbers[i] == pre)
+                return false;
+            //æ³¨æ„ç´¯åŠ gap
+            gap += (numbers[i] - pre - 1);
+            pre = numbers[i];
+        }
+        if(zero >= gap)return true;
+        else{
+            return false;
+        }
+
+
+    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Problem44 test=new Problem44();
 		int[] array={0,1,2,3,5};
-		int[] array2={0,1,3,5,6};
+		int[] array2={0,2,3,4,6};
 		int[] array3={2,3,4,5,6};
-		System.out.println("ÊÇ·ñÎªË³×Ó");
+		System.out.println(" ");
 		System.out.println(test.isContionous(array, 5));
 		System.out.println(test.isContionous(array2, 5));
 		System.out.println(test.isContionous(array3, 5));
