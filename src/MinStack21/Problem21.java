@@ -10,6 +10,7 @@ public class Problem21 {
 	public void push(int data)
 	{
 		datastack.push(data);
+		//只有比当前数字小的才能进来的数字
 		if(minstack.isEmpty()||data<minstack.peek())
 			minstack.push(data);
 	}
